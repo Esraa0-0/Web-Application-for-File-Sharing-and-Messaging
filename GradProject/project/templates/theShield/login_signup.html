@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="form-box login-box">
+            <h2>Welcome Back!</h2>
+            <p>Log in with your personal info</p>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="login"> <!-- Hidden input to identify login form -->
+                <input type="text" name="username" placeholder="Username" value="{{ request.POST.userName }}" required>
+                <input type="password" name="password" placeholder="password" value="{{ request.POST.psw }}" required>
+                <p></p><a href="#">Forgot your password?</p></a>
+                {% if error_message2 %}
+                <p class="error-message" style="color: red;">{{ error_message2 }}</p>
+                {% endif %}
+                <button type="submit" class="btn" id="login">LOG IN</button>
+            </form>
+        </div>
+
+        <!-- Sign-Up Form -->
+        <div class="form-box signup-box">
+            <h2>Join Us Today!</h2>
+            <p>Create an account to get started</p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="signup"> <!-- Hidden input to identify signup form -->
+                <input type="text" name="username" placeholder="Username" value="{{ request.POST.username }}"
+                    pattern="^[a-zA-Z0-9_]+$" title="Username can only contain letters, numbers, and underscores _"
+                    required>
+                <input type="email" name="email" placeholder="Email" value="{{ request.POST.email }}" required>
+                <input type="password" name="password" placeholder="Password" value="{{ request.POST.password }}"
+                    title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+                    required>
+                {% if error_message1 %}
+                <p class="error-message" style="color: red;">{{ error_message1 }}</p>
+                {% endif %}
+                {% if success_message %}
+                <p class="success-message" style="color: green;">{{ success_message }}</p>
+                {% endif %}
+                <button type="submit" class="btn" id="signup">SIGN UP</button>
+            </form>
+        </div>
+
+        <!-- Sliding Overlay -->
+        <div class="overlay">
+            <div class="overlay-panel">
+                <h2 id="overlay-title">New Here?</h2>
+                <p id="overlay-text">Sign up and start your journey with us.</p>
+                <button class="btn overlay-btn" id="overlay-btn" onclick="toggleForm()">SIGN UP</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const overlayTitle = document.getElementById('overlay-title');
+        const overlayText = document.getElementById('overlay-text');
+        const overlayButton = document.getElementById('overlay-btn');
+
+        function toggleForm() {
+            container.classList.toggle('active');
+
+            if (container.classList.contains('active')) {
+                overlayTitle.textContent = "Welcome Back!";
+                overlayText.textContent = "Log in with your personal info.";
+                overlayButton.textContent = "LOG IN";
+            } else {
+                overlayTitle.textContent = "New Here?";
+                overlayText.textContent = "Sign up and start your journey with us.";
+                overlayButton.textContent = "SIGN UP";
+            }
+        }
+
+        // Check the URL parameter to determine which form to show
+        const urlParams = new URLSearchParams(window.location.search);
+        const formType = urlParams.get('form');
+
+        // Show the appropriate form based on the URL query parameter
+        if (formType === 'signup') {
+            toggleForm();
+        }
+    </script>
+</body>
+
+</html>

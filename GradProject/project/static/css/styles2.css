@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #eaebea, #dadbda);
+}
+
+.container {
+    background-color: #FFFFFF;
+    border-radius: 0px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    background: -webkit-radial-gradient(center, #61c161, #3e9c41);
+    color: white;
+    padding: 30px 40px; /* Add padding for spacing within the header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.welcome-button {
+    background-color: #DFFFD6;
+    color: #0e1e0e;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth hover effect */
+}
+
+.welcome-button:hover {
+    background-color: #C3E5B6; /* Slightly darker green for hover */
+    transform: translateY(-2px); /* Subtle hover lift */
+}
+
+.content {
+    display: flex;
+    height: calc(100vh - 70px); /* Adjust for header height */
+}
+
+.left {
+    flex: 70%;
+    padding: 20px;
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+textarea {
+    width: 97%;
+    height: 150px;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.file-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.file-button:hover {
+    background-color: #45a049;
+}
+
+.main-action, .reply-action {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: large;
+    width: 90%;
+    margin: 3% 5%;
+}
+
+input[type="text"] {
+    border: 2px solid #4CAF50;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    width: 98%;
+}
+
+.right {
+    flex: 30%;
+    padding: 15px;
+    background-color: #ffffff57;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.right h2 {
+    margin: 0;
+    color: #111111;
+}
+
+.messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.messages li {
+    padding: 10px;
+    background-color: #C3E5B6;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.messages li:hover {
+    background-color: #DFFFD6;
+}
+
+.manage-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    align-self: center;
+    position: absolute;
+    margin: 26%;
+    width: 25%;
+}
+.send-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    align-self: center;
+    position: absolute;
+    margin: 30%;
+    width: 25%;
+}
+
+.send-button:hover {
+    background-color: #45a049;
+}
+
+.manage-section { 
+    margin: 20px 0; 
+} 
+
+.manage-section h3 { 
+    margin-bottom: 10px; 
+} 
+
+.manage-section input {
+    width: calc(100% - 22px); /* Adjusted to match */
+}
+
+.mng-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.mng-button:hover {
+    background-color: #45a049;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 110%; /* Add space for smooth separation from the button */
+    right: 0;
+    background: linear-gradient(135deg, #DFFFD6, #C3E5B6);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
+    border-radius: 15px; /* Rounded edges for a seamless look */
+    overflow: hidden;
+    z-index: 1000;
+    padding: 5px 0; /* Add slight padding for better spacing */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth animations */
+    opacity: 0;
+    transform: translateY(-10px); /* Initial position for animation */
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Smoothly slide in */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #0e1e0e;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle divider */
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none; /* Remove divider for the last item */
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Light hover effect */
+    color: #4CAF50; /* Match your green theme */
+}
